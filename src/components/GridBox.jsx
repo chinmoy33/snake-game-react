@@ -173,6 +173,7 @@
 import React, { useEffect, useState,useRef } from "react";
 import useSnakeStore from "../store/useSnakeStore";
 import snakeImage from "../assets/snake.png"
+import appleImage from "../assets/apple.png"
 
 function GridBox({ x, y }) {
   const movement = useSnakeStore((state) => state.movement);
@@ -261,9 +262,11 @@ function GridBox({ x, y }) {
 
   return (
     <div className="border-1 border-amber-600 w-[60px] h-[60px] flex justify-center items-center">
-      {x===appleX && y===appleY?(<div
-                className="w-12 h-12 rounded-full bg-red-900"
-              ></div>):null}
+      {x===appleX && y===appleY?(<img
+                src={appleImage}
+                alt="apple"
+                className="w-16 h-16"
+              />):null}
       {movement.map(({ position }, index) => {
         const [x1, y1] = position;
 
