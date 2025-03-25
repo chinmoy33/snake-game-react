@@ -28,10 +28,10 @@ function Button() {
 
     return (
         <div>
-            <div className="relative w-[480px] h-[480px] bg-emerald-800">
+            <div className="relative w-[480px] h-[480px] border-1 border-amber-600">
                 <div className="border-1 h-[100px] absolute bottom-44 left-46 text-yellow-500">
                     <button onClick={() => setStart()}>
-                        {!start?<Pause className="hover:bg-emerald-600 transition duration-200" style={{ width: "100px", height: "100px" }} /> : <Play className="hover:bg-emerald-600 transition duration-200" style={{ width: "100px", height: "100px" }} />}
+                        {start?<Pause className="hover:bg-emerald-600 transition duration-200" style={{ width: "100px", height: "100px" }} /> : <Play className="hover:bg-emerald-600 transition duration-200" style={{ width: "100px", height: "100px" }} />}
                     </button>
                 </div>
                 <div className="border-1 h-[100px] absolute bottom-44 left-12 text-blue-700">

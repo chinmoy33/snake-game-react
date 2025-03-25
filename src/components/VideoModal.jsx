@@ -4,7 +4,13 @@ import useSnakeStore from '../store/useSnakeStore.js';
 function VideoModal() {
     const gameOver=useSnakeStore((state)=>state.gameOver);
     const setGameOver=useSnakeStore((state)=>state.setGameOver);
-    const score=useSnakeStore((state)=>state.score)
+    const score=useSnakeStore((state)=>state.score);
+    const highscore=useSnakeStore((state)=>state.highscore);
+    let displayhighscore=highscore;
+    if(highscore<score)
+    {
+      displayhighscore=score;
+    }
   return (
     gameOver && (
       <div className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-opacity-50 backdrop-blur-md z-50">
@@ -16,8 +22,11 @@ function VideoModal() {
             <source src={videoSrc} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-          <div className="absolute ml-2 h-[50px] top-2 left-1/2 -translate-x-1/2  text-red-600 text-5xl px-3 py-1 m-0 rounded-full">
-              {`Score : ${score}`}
+          <div className="absolute ml-44 w-full h-[50px] top-2 left-1/2 -translate-x-1/2  text-red-600 text-4xl px-3 py-1 m-0 rounded-full">
+              {`Your Score : ${score}`}
+          </div>
+          <div className="absolute ml-36 w-full h-[50px] top-15 left-1/2 -translate-x-1/2  text-red-600 text-4xl px-3 py-1 m-0 rounded-full">
+              {`Highest Score : ${displayhighscore}`}
           </div>
           {/* Close Button */}
           <button

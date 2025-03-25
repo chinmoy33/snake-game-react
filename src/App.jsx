@@ -66,7 +66,7 @@ function App() {
       </div>
 
       <div className="w-[100%] h-[100%] flex items-center justify-center">
-        <div className="border-1 w-[480px] h-[480px] grid grid-cols-8 grid-rows-8">
+        <div className="border-1 border-amber-600 w-[480px] h-[480px] grid grid-cols-8 grid-rows-8">
           {Array.from({ length: 64 }).map((_, index) => {
             const y = index % gridSize; // Row index
             const x = Math.floor(index / gridSize); // Column index

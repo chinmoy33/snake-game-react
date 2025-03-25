@@ -67,6 +67,7 @@ function Score() {
   const score = useSnakeStore((state) => state.score);
   const setSpeed = useSnakeStore((state) => state.setSpeed);
   const speed = useSnakeStore((state) => state.speed);
+  const highscore = useSnakeStore((state) => state.highscore);
 
   const getSpeedLabel = () => {
     switch (speed) {
@@ -86,7 +87,7 @@ function Score() {
   return (
     <div className="relative w-[960px] h-[480px] flex items-center gap-4">
       {/* Combined Border for Speed & Buttons */}
-      <div className="w-[480px] border-4 border-amber-600 p-4 flex flex-col items-center gap-4">
+      <div className="w-[320px] h-[150px] border-4 border-amber-600 p-4 flex flex-col items-center gap-4">
         {/* Speed Display */}
         <div className="text-2xl font-bold">{getSpeedLabel()}</div>
 
@@ -120,8 +121,11 @@ function Score() {
       </div>
 
       {/* Separate Border for Score */}
-      <div className="w-[480px] border-4 p-10 border-amber-600 bg-emerald-800 text-red-600 text-4xl flex items-center justify-center font-bold">
+      <div className="w-[320px] h-[150px] border-4 p-8 border-amber-600 text-red-600 text-4xl flex items-center justify-center font-bold">
         {`Your Score : ${score}`}
+      </div>
+      <div className="w-[320px] border-4 p-8 border-amber-600 text-red-600 text-4xl flex items-center justify-center font-bold">
+        {`High Score : ${highscore}`}
       </div>
     </div>
   );

@@ -405,16 +405,46 @@ const useSnakeStore = create((set) => ({
     hasGrown: false,  // New state to track growth
     gameOver:false,
     speed:1000,
+    appleX:5,
+    appleY:5,
+    highscore:0,
     
     setSpeed:(num)=> set((state)=>{
         return {speed:num};
     }),
-    setGameOver:() => set((state)=>({gameOver:!state.gameOver,start: false,length: 1, movement: [{ position: [0, 0] }],direction: ["down"],score: 0,hasGrown: false})), 
+    setGameOver:() => set((state)=>{
+        let newscore=state.highscore;
+        if(state.score>state.highscore)
+        {
+            newscore=state.score;
+        }
+        return{highscore:newscore,speed:1000,gameOver:!state.gameOver,start: false,length: 1, movement: [{ position: [0, 0] }],direction: ["down"],score: 0,hasGrown: false,appleX:5,appleY:5}}), 
     setStart: () => set((state) => ({ start: !state.start })),
     
     setLength: () => set((state) => {
         if (!state.hasGrown) {  // Only grow if hasn't grown yet
-            return { length: state.length + 1, hasGrown: true,score:state.score+100 };
+            let count=1;
+            let a,b;
+            while(count==1)
+            {
+            // appleX = Math.floor(Math.random() * 8);
+            // appleY = Math.floor(Math.random() * 8);
+            a=Math.floor(Math.random() * 8);
+            b=Math.floor(Math.random() * 8);
+            //setHasSetApple(true);
+            for(const element of state.movement)
+            {
+                const [elementX,elementY]=element.position;
+                if(elementX===a && elementY===b)
+                {
+                    count=1;
+                    break;
+                }
+                count=0;
+            }
+            }
+            
+            return { length: state.length + 1, hasGrown: true,score:state.score+100,appleX:a,appleY:b };
         }
         return {}; // No update if already grown
     }),
@@ -445,6 +475,7 @@ const useSnakeStore = create((set) => ({
         set((state) => {
             let updatedMovement = [...state.movement];
             console.log(state.speed);
+            console.log(state.length);
             // Get the current head position
             const [x, y] = updatedMovement[updatedMovement.length - 1].position;
             let newX = x, newY = y;
